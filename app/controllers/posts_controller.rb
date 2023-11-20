@@ -61,6 +61,9 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to root_path
+        # flash[:danger] = "This Blog Post with id = #{params[:id]} doesnt exsists!"      
     end
 
     # Only allow a list of trusted parameters through.
